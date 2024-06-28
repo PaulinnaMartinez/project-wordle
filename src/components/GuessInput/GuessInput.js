@@ -1,12 +1,11 @@
 import React from 'react';
 
-function GuessInput({ handleList }) {
+function GuessInput({ handleList, gameEnded }) {
   const [guess, setGuess] = React.useState('')
 
   function tryGuess(event) {
     event.preventDefault();
     handleList(guess);
-    console.log({ guess });
     newGuess("")
   }
 
@@ -20,6 +19,7 @@ function GuessInput({ handleList }) {
         <label>Enter guess:</label>
         <input value={guess} maxLength={5} minLength={5}
           pattern='[A-Za-z]{5}' title='5 letras'
+          disabled={gameEnded}
           onChange={(event) => newGuess(event.target.value)}></input>
       </form>
     </>
